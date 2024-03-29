@@ -395,6 +395,12 @@ public:
     TX.transmitByte(data);
   }
 
+  void transmitBuffer(uint16_t const *buffer, uint16_t length){
+    for (size_t i = 0; i < length; i++){
+      TX.transmitByte(buffer[i]);
+    }
+  }
+
   UARTRxStatusCode rxStatus()
   {
     return RX.rxStatus();
