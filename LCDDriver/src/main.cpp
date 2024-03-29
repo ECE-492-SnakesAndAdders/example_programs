@@ -18,7 +18,7 @@ L LCD_startup;
 // use a loop to get a longer delay.
 void long_wait()
 {
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     sys_clock_wait(10000);
   }
 }
@@ -54,16 +54,19 @@ int main(void)
 
      char* xpd_test_str = "testing";
 
+     //Have the board loop through printing various ascii characters 
+     // Range from d33 -> d126  ( ! -> ~)
+     char ch = 33; //ASCII A
+
      while(true){
-
-          LCD_startup.writeChar('A');
+          if(ch > 126){
+               ch = 33;
+          }
+          LCD_startup.writeChar(ch);
           long_wait();
+          ch++;
 
-          xpd_puts(xpd_test_str);
-          long_wait();
+          // xpd_puts(xpd_test_str);
+          // long_wait();
      }
-
-     //Test LCD write string 
-     // LCD_startup.writeString
-
 }
